@@ -1,0 +1,7 @@
+modules = ["php-8.1", "python-3.10"]
+run = "python app.py"
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "python app.py"]
