@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management</title>
+</head>
+<body>
+    <h1>Gestion des Élèves</h1>
+    <form action="/add_student" method="post">
+        <input type="text" name="student_id" placeholder="ID de l'étudiant" required>
+        <input type="text" name="name" placeholder="Nom de l'étudiant" required>
+        <input type="email" name="email" placeholder="Email de l'étudiant" required>
+        <button type="submit">Ajouter Étudiant</button>
+    </form>
+    <h2>Liste des étudiants</h2>
+    <ul>
+        {% for student in students %}
+            <li><a href="/view_student/{{ student.student_id }}">{{ student.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

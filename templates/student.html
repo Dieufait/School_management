@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'Étudiant</title>
+</head>
+<body>
+    <h1>{{ student.name }} - Détails</h1>
+    <h2>Ajouter un cours</h2>
+    <form action="/add_course/{{ student.student_id }}" method="post">
+        <input type="text" name="course_name" placeholder="Nom du cours" required>
+        <input type="number" step="0.1" name="grade" placeholder="Note" required>
+        <button type="submit">Ajouter Cours</button>
+    </form>
+    <h2>Bulletin</h2>
+    <pre>{{ bulletin.generate_report() }}</pre>
+    <h2>État des Frais de Scolarité</h2>
+    <p>Frais Total: 1000</p>
+    <p>Frais Payés: {{ student.get_total_tuition() }}</p>
+    <p>Solde Restant: {{ tuition.get_balance() }}</p>
+    {% if tuition.is_fully_paid() %}
+        <p>Frais de scolarité complètement payés.</p>
+    {% else %}
+        <form action="/pay_tuition/{{ student.student_id }}" method="post">
+            <input type="number" step="0.01" name="amount" placeholder="Montant du paiement" required>
+            <button type="submit">Payer Frais</button>
+        </form>
+    {% endif %}
+</body>
+</html>
